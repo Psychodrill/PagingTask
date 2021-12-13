@@ -1,0 +1,30 @@
+﻿@model OrganizationListViewModel
+@{
+    ViewData["Title"] = "Организации";
+}
+<label>Записей на странице</label>
+<br />
+@Html.TextBoxFor(m => m.PagingInfo.ItemsPerPage, new { @Value = "itemsPerPage" })
+<br />
+<br />
+<label>Количество страниц:</label>
+<br />
+@Html.TextBoxFor(m => m.PagingInfo.RangePages, new { @Value = "rangePages" })
+<br />
+
+<br />
+<a class="btn btn-success" href="@Url.Action("Organizations","Home",new {pageNumber =@Model.PagingInfo.CurrentPage, rangePages =@Model.PagingInfo.RangePages, pageSize =@Model.PagingInfo.ItemsPerPage })">Установить</a>
+<button type="button"value="Применить">Organizations</button>
+
+
+@foreach (var o in Model.Organizations)
+{
+    <div>
+        <h3>@o.Name</h3>
+
+    </div>
+}
+<div page-model="@Model.PagingInfo" page-action="Organizations"></div>
+
+
+
